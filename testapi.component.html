@@ -1,0 +1,149 @@
+<div class="container">
+    <h2 class="col-md-4">Test API    </h2> 
+      <button class="btn btn-success" style="margin-top: 18px;" type="button" data-toggle="modal" data-target="#myModal8" ><span class="glyphicon glyphicon-plus"></span> Add new student</button>
+        <!-- Modal -->
+        <div class="modal fade" id="myModal8" role="dialog">
+            <div class="modal-dialog">
+            
+              <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title">Add new student</h4>
+                </div>
+                <div class="modal-body">
+                  <p>
+                    Name: <input type="text" #nameapi >
+                  </p>
+                  <p>
+                      Lop: <input type="text" #lopapi >
+                  </p>
+                  <p>
+                      Khoa: <input type="text" #khoaapi >
+                  </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" (click)="adddetailapi( nameapi.value, lopapi.value,  khoaapi.value)" data-dismiss="modal">Add</button>
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+
+    <table datatable class="table table-bordered row-border hover " >
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Lop</th>
+          <th>Khoa</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let rec of arr; let ind = index;">
+          <td>{{rec.id}}</td>
+          <td>{{rec.tensv}}</td>
+          <td>{{rec.lop}}</td>
+          <td>{{rec.khoa}}</td>
+          <td>
+            <button class="btn btn-info"  type="button" data-toggle="modal" data-target="#myModal5" (click)="showdetailapi(ind)"><span class="glyphicon glyphicon-eye-open"></span> View</button>
+            <!-- Modal -->
+            <div class="modal fade" id="myModal5" role="dialog">
+                <div class="modal-dialog">
+                
+                  <!-- Modal content-->
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      <h4 class="modal-title">View detail</h4>
+                    </div>
+                    <div class="modal-body">
+                      <table class="table table-bordered">
+                      <tr>
+                        <td>{{showid}}</td>
+                        <td>{{showtensv}}</td>
+                        <td>{{showlop}}</td>
+                        <td>{{showkhoa}}</td>
+                      </tr>
+                      </table>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                  </div>
+                  
+                </div>
+              </div>
+              <button class="btn btn-success" type="button" data-toggle="modal" data-target="#myModal6" (click)="showdetailapi(ind)" ><span class="glyphicon glyphicon-edit"></span> Edit</button>
+              <!-- Modal -->
+              <div class="modal fade" id="myModal6" role="dialog">
+                  <div class="modal-dialog" style="width: 635px; ">
+                  
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Edit</h4>
+                      </div>
+                      <div class="modal-body">
+                        <table class="table table-bordered">
+                          <thead>
+                            <tr>
+                              <th>ID</th>
+                              <th>TenSV</th>
+                              <th>Lop</th>
+                              <th>Khoa</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                          <tr>
+                            <td>{{ showid }}</td>
+                            <td><input type="text" value="{{ showtensv }}" #newtensv></td>
+                            <td><input type="text" value="{{ showlop }}" #newlop></td>
+                            <td><input type="text" value="{{ showkhoa }}" #newkhoa></td>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-success" (click)="editdetailapi(newtensv.value, newlop.value, newkhoa.value)" data-dismiss="modal">Save</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                      </div>
+                    </div>
+                    
+                  </div>
+                </div>
+              <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal7" (click)="showdetailapi(ind)" ><span class="glyphicon glyphicon-trash"></span> Delete</button>
+              <!-- Modal -->
+              <div class="modal fade" id="myModal7" role="dialog">
+                <div class="modal-dialog">
+                
+                  <!-- Modal content-->
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      <h4 class="modal-title">Are you sure you want delete this item</h4>
+                    </div>
+                    <div class="modal-body">
+                      <table class="table table-bordered">
+                      <tr>
+                        <td>{{ showid }}</td>
+                        <td>{{ showtensv }}</td>
+                        <td>{{ showlop }}</td>
+                        <td>{{ showkhoa }}</td>
+                      </tr>
+                      </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="removedetailapi()">Delete</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                      </div>
+                  </div>
+              </div>
+              </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
